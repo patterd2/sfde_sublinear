@@ -12,9 +12,10 @@ Lambda = 1; % not used in this figure
 h = 0.01; % step size
 X_0 = 1; % initial condition
 alpha = 4;
+epsilon = 0.08;
 
 % set the terminal time of the simulation in "real time"
-T = 100;
+T = 250000;
 % length of simulation in "discretised time" including initial interval
 T_h = floor(T/h);
 
@@ -32,20 +33,20 @@ end
 t = 0:h:(T_h)*h;
 s = (1+t).^(-3);
 Sigma = sqrt(2*(t.^(alpha+1)).*log(log(t.^(alpha+1)+exp(1))));
-plot(pow(t,0.06),pow(transpose(s).*X_h./transpose(Sigma),0.06),'Color',...
+plot(pow(t,epsilon),pow(transpose(s).*X_h./transpose(Sigma),epsilon),'Color',...
     'r','LineWidth', 1.5);
 hold on;
-plot(pow(t,0.06),pow(s,0.06),'Color','b','LineWidth',1.5);
-plot(pow(t,0.06),pow(-s,0.06),'Color','b','LineWidth',1.5);
+plot(pow(t,epsilon),pow(s,epsilon),'Color','b','LineWidth',1.5);
+plot(pow(t,epsilon),pow(-s,epsilon),'Color','b','LineWidth',1.5);
 set(gca,'FontSize',22)
 xlabel('Time','Interpreter','Latex')
 set(gca,'YLim',[-1 1])
-set(gca,'XLim',[1 max(pow(t,0.06))]);
+set(gca,'XLim',[1 max(pow(t,epsilon))]);
 h = legend('$\frac{s(t)\,X_t(\omega)}{\Sigma(t)}$','$\pm s(t)$');
 set(h,'Interpreter','latex')
-positions = pow([0 10 50 250 1000 2500 10000 25000 100000],0.06);
+positions = pow([0 10 50 250 1000 3000 10000 30000 100000 250000],epsilon);
 set(gca,'xTick',positions);
-set(gca, 'xTickLabel',[0 10 50 250 1000 2500 10000 25000 100000]);
+set(gca, 'xTickLabel',[0 10 50 250 1000 3000 10000 30000 100000 250000]);
 c = zeros(length(t),1);
 plot(t,c,'LineWidth',1,'Color','k');
 
