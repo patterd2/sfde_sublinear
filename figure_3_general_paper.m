@@ -42,7 +42,7 @@ xlabel('Time','Interpreter','Latex')
 set(gca,'YLim',[-1 1])
 set(gca,'XLim',[1 max(pow(t,epsilon))]);
 h = legend('$\frac{s(t)\,X(t)}{\Sigma(t)}$','$\pm s(t)$');
-set(h,'Interpreter','latex')
+set(h,'Interpreter','latex');
 positions = pow([0 10 50 250 1000 3000 10000 30000 100000 250000],epsilon);
 set(gca,'xTick',positions);
 set(gca, 'xTickLabel',[0 10 50 250 1000 3000 10000 30000 100000 250000]);

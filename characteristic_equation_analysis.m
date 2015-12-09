@@ -17,7 +17,8 @@ plot(betas,c,'LineWidth',2);
 xlabel('$\beta$','Interpreter','Latex')
 set(gca,'xTick',[0.5 0.6 0.7 0.8 0.9 1]);
 set(gca, 'xTickLabel',[0.5 0.6 0.7 0.8 0.9 1]);
-h = legend({'$\eta(\beta)$','$\frac{\lambda}{\lambda-1}$'},'Location','northwest');
-set(h,'Interpreter','latex')
+h = legend({'$\eta(\beta)$','$\frac{\lambda}{\lambda-1}$'},...
+    'Location','northwest');
+set(h,'Interpreter','latex');
 
 

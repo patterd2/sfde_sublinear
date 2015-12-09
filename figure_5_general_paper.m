@@ -45,7 +45,8 @@ xlabel('Time','Interpreter','Latex')
 set(gca,'XLim',[3 T])
 set(gca,'YLim',[0 8])
 set(gca,'XTick',0:T/4:T)
-legend('L_f(\Sigma)=0.5','L_f(\Sigma)=1.5','L_f(\Sigma)=5')
+h=legend('$L_f(\Sigma)=0.5$','$L_f(\Sigma)=1.5$','$L_f(\Sigma)=5$');
+set(h,'Interpreter','latex');
 
 
 

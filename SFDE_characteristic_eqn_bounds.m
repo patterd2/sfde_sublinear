@@ -8,17 +8,18 @@ pow = @(x,alpha) sign(x).*abs(x).^alpha; % for powers of negative numbers
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 rng = ('simdTwister');
 % Input parameters for the FDE
-beta = 0.5;
-L_f = 1.1;
+beta = 0.3;
+L_f = 3; % MUST be strictly larger than 1 to avoid catastrophy
 h = 0.01; % step size
 X_0 = 1; % initial condition
 epsilon = 0.07;
 % calculate the solution of the characteristic eqn for these parameters
-f = @(x) x - (x.^beta)/lambda - 1;
-    etas(1,i) = fsolve(f,1);
+F = @(x) x - (x.^beta)/L_f - 1; %best formulation for fsolve
+eta = fsolve(F,1);
+zeta = eta*L_f^(1/(1-beta));
 
 % set the terminal time of the simulation in "real time"
-T = 1000;
+T = 250000;
 % length of simulation in "discretised time" including initial interval
 T_h = floor(T/h);
 % create vector to store the solution
@@ -39,25 +40,20 @@ Sigma = (L_f*(1-beta)*t).^(1/(1-beta));
 plot(pow(t,epsilon),pow(transpose(s).*X_h./transpose(Sigma),epsilon),...
     'Color','r','LineWidth', 1.5);
 hold on;
-plot(pow(t,epsilon),pow(s*(L_f/(L_f-1)),epsilon),'Color','b','LineWidth',1.5);
+plot(pow(t,epsilon),pow(s*(1/(1-zeta^(beta-1))),epsilon),'Color','b','LineWidth',1.5);
 hold on;
-plot(pow(t,epsilon),pow(s*((L_f-1)/L_f),epsilon),'Color','m','LineWidth',1.5);
-hold on;
-plot(pow(t,epsilon),pow(-s*((L_f-1)/L_f),epsilon),'Color','m','LineWidth',1.5);
-hold on;
-plot(pow(t,epsilon),pow(-s*(L_f/(L_f-1)),epsilon),'Color','b','LineWidth',1.5);
+plot(pow(t,epsilon),pow(-s*(1/(1-zeta^(beta-1))),epsilon),'Color','b','LineWidth',1.5);
 hold on;
 set(gca,'FontSize',22)
 xlabel('Time','Interpreter','Latex')
 set(gca,'YLim',[-1 1])
 set(gca,'XLim',[1 max(pow(t,epsilon))]);
 h = legend('$\frac{s(t)\,X(t)}{\Sigma(t)}$',...
-    '$\pm \frac{L_f(\Sigma)}{L_f(\Sigma)-1}s(t)$',...
-    '$\pm \frac{L_f(\Sigma)-1}{L_f(\Sigma)}s(t)$');
-set(h,'Interpreter','latex')
-positions = pow([0 10 50 250 1000 2500 10000 25000 100000],epsilon);
+    '$\pm \frac{1}{1-\zeta^{\beta-1}}s(t)$');
+set(h,'Interpreter','latex');
+positions = pow([0 10 50 250 1000 2500 10000 25000 100000 250000],epsilon);
 set(gca,'xTick',positions);
-set(gca, 'xTickLabel',[0 10 50 250 1000 2500 10000 25000 100000]);
+set(gca, 'xTickLabel',[0 10 50 250 1000 2500 10000 25000 100000 250000]);
 c = zeros(length(t),1);
 hold on;
 plot(t,c,'LineWidth',1,'Color','k');

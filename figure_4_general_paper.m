@@ -48,7 +48,8 @@ set(gca,'YTick',[0 1 2 3])
 set(gca,'XTick',0:T/4:T)
 c = ones(length(t),1)*(1+L_f);
 plot(t,c,'LineWidth',1,'Color','k');
-legend('\beta=0.25','\beta=0.5','\beta=0.75','1+L_f(\Sigma)')
+h = legend('$\beta=0.25$','$\beta=0.5$','$\beta=0.75$','$1+L_f(\Sigma)$');
+set(h,'Interpreter','latex')
 
 
 

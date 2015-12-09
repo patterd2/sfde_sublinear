@@ -44,7 +44,8 @@ set(gca,'YTick',[0.8 1 1.2])
 set(gca,'XTick',0:T/4:T)
 c = ones(length(t),1);
 plot(t,c,'LineWidth',1,'Color','k');
-legend('\beta=0.25','\beta=0.5','\beta=0.75','Location','northeast')
+h = legend('$\beta=0.25$','$\beta=0.5$','$\beta=0.75$','Location','northeast');
+set(h,'Interpreter','latex');
 
 
 

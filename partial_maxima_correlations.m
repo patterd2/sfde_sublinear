@@ -54,7 +54,7 @@ set(gca,'YLim',[-1 1])
 set(gca,'XLim',[1 max(pow(t,epsilon))]);
 h = legend('$\frac{s(t)\,M(t)}{\Sigma(t)}$','$\frac{s(t)\,X(t)}{\Sigma(t)}$',...
     '$\pm \frac{L_f(\Sigma)}{L_f(\Sigma)-1}s(t)$','$\pm \frac{L_f(\Sigma)-1}{L_f(\Sigma)}s(t)$');
-set(h,'Interpreter','latex')
+set(h,'Interpreter','latex');
 positions = pow([0 10 50 250 1000 2500 10000 25000 100000],epsilon);
 set(gca,'xTick',positions);
 set(gca, 'xTickLabel',[0 10 50 250 1000 2500 10000 25000 100000]);
