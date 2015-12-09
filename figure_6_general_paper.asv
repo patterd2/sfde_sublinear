@@ -47,9 +47,8 @@ set(gca,'FontSize',22)
 xlabel('Time','Interpreter','Latex')
 set(gca,'YLim',[-1 1])
 set(gca,'XLim',[1 max(pow(t,0.06))]);
-h = legend('$\frac{s(t)\,X(t)}{\Sigma(t)}$',...
-    '$\pm \frac{L_f(\Sigma)}{L_f(\Sigma)-1}s(t)$',...
-    '$\pm \frac{L_f(\Sigma)-1}{L_f(\Sigma)}s(t)$');
+h = legend('$\frac{s(t)\,X(\omega)}{\Sigma(t)}$',...
+    '$\pm \frac{\Lambda}{\Lambda-1}s(t)$','$\pm \frac{\Lambda-1}{\Lambda}s(t)$');
 set(h,'Interpreter','latex')
 positions = pow([0 10 50 250 1000 2500 10000 25000 100000],0.06);
 set(gca,'xTick',positions);

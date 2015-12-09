@@ -8,7 +8,6 @@ pow = @(x,alpha) sign(x).*abs(x).^alpha; % for powers of negative numbers
 rng = ('simdTwister');
 % Input parameters for the FDE
 beta = 0.5;
-Lambda = 1; % not used in this figure
 h = 0.01; % step size
 X_0 = 1; % initial condition
 alpha = 4;
@@ -33,8 +32,8 @@ end
 t = 0:h:(T_h)*h;
 s = (1+t).^(-3);
 Sigma = sqrt(2*(t.^(alpha+1)).*log(log(t.^(alpha+1)+exp(1))));
-plot(pow(t,epsilon),pow(transpose(s).*X_h./transpose(Sigma),epsilon),'Color',...
-    'r','LineWidth', 1.5);
+plot(pow(t,epsilon),pow(transpose(s).*X_h./transpose(Sigma),epsilon),...
+    'Color','r','LineWidth', 1.5);
 hold on;
 plot(pow(t,epsilon),pow(s,epsilon),'Color','b','LineWidth',1.5);
 plot(pow(t,epsilon),pow(-s,epsilon),'Color','b','LineWidth',1.5);
@@ -42,7 +41,7 @@ set(gca,'FontSize',22)
 xlabel('Time','Interpreter','Latex')
 set(gca,'YLim',[-1 1])
 set(gca,'XLim',[1 max(pow(t,epsilon))]);
-h = legend('$\frac{s(t)\,X_t(\omega)}{\Sigma(t)}$','$\pm s(t)$');
+h = legend('$\frac{s(t)\,X(t)}{\Sigma(t)}$','$\pm s(t)$');
 set(h,'Interpreter','latex')
 positions = pow([0 10 50 250 1000 3000 10000 30000 100000 250000],epsilon);
 set(gca,'xTick',positions);
