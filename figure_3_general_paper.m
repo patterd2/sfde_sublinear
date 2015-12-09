@@ -11,7 +11,7 @@ beta = 0.5;
 h = 0.01; % step size
 X_0 = 1; % initial condition
 alpha = 4;
-epsilon = 0.08;
+epsilon = 0.07;
 
 % set the terminal time of the simulation in "real time"
 T = 250000;

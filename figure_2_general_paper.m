@@ -13,7 +13,7 @@ X_0 = 1; % initial condition
 line_colours = char('r', 'b', 'm');
 
 % set the terminal time of the simulation in "real time"
-T = 100;
+T = 10000;
 % length of simulation in "discretised time" including initial interval
 T_h = floor(T/h);
 % create vector to store the solution
